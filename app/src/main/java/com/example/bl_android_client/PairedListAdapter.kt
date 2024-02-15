@@ -79,6 +79,13 @@ class PairedListAdapter(val pairedList: List<BluetoothDevice> , val context: Con
             if (mBluetoothSocket != null) {
                 if (!mBluetoothSocket.isConnected()) {
                     mBluetoothSocket.connect()
+                    mBluetoothSocket.outputStream?.write("Hello BL".toByteArray())
+                    mBluetoothSocket.close()
+
+                    //for reading
+//                    mBluetoothSocket.inputStream?.read()
+//                    mBluetoothSocket.close()
+
                     Log.d(TAG, "connect: Connected")
                     CoroutineScope(Dispatchers.Main).launch {
                         process.visibility = View.GONE
